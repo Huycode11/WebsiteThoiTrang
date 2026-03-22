@@ -6,6 +6,7 @@ const productRoutes = require('./route/productRoute');
 const brandRoutes = require('./route/brandRoute');
 const categoryRoutes = require('./route/categoryRoute');
 const cartRoutes = require('./route/cartRoute');
+const wishlistRoutes = require('./route/wishlistRoute');
 const dns = require("dns")
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/brands', brandRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/wishlist', wishlistRoutes);
 
 // Root Route
 app.get('/', (req, res) => {

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import ProductCard from '../components/ui/ProductCard';
 
 const Shop = () => {
+    const [searchParams] = useSearchParams();
+    const categoryParam = searchParams.get('category');
+    
     const [products, setProducts] = useState([]);
     const [brands, setBrands] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -42,10 +45,15 @@ const Shop = () => {
         fetchData();
     }, []);
 
+    // Filter products by category if param exists
+    const filteredProducts = categoryParam 
+        ? products.filter(p => p.categories && p.categories.includes(categoryParam))
+        : products;
+
     // Pagination logic
-    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentProducts = products.slice(startIndex, startIndex + itemsPerPage);
+    const currentProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -91,7 +99,7 @@ const Shop = () => {
             <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 30px', display: 'flex', gap: '40px' }}>
                 {/* Left Sidebar */}
                 <div style={{ width: '250px', flexShrink: 0 }}>
-                    <button style={{ width: '100%', background: '#3b5998', color: '#fff', border: 'none', padding: '12px 0', fontSize: '12px', fontWeight: 'bold', letterSpacing: '1px', marginBottom: '40px', cursor: 'pointer' }}>
+                    <button className="btn-premium" style={{ width: '100%', marginBottom: '40px' }}>
                         FILTER
                     </button>
 
@@ -165,7 +173,7 @@ const Shop = () => {
                 {/* Main Grid Content */}
                 <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', fontSize: '13px', color: '#666' }}>
-                        <div>Showing {Math.min(startIndex + 1, products.length)}–{Math.min(startIndex + itemsPerPage, products.length)} of {products.length} results</div>
+                        <div>Showing {filteredProducts.length > 0 ? startIndex + 1 : 0}–{Math.min(startIndex + itemsPerPage, filteredProducts.length)} of {filteredProducts.length} results</div>
                         <div>
                             Sort by: <select style={{ border: 'none', background: 'transparent', outline: 'none', fontWeight: '500', cursor: 'pointer' }}>
                                 <option>Default sorting</option>

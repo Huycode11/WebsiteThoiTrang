@@ -6,23 +6,28 @@ import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
 import AddProduct from './pages/AddProduct';
 import Cart from './pages/Cart';
+import Wishlist from './pages/Wishlist';
 import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
 import './App.css';
 
 function App() {
   return (
     <CartProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/product" element={<AddProduct />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <WishlistProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/product" element={<AddProduct />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </WishlistProvider>
     </CartProvider>
   );
 }

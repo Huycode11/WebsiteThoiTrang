@@ -105,3 +105,179 @@ h1, h2, h3, h4, h5, h6 {
     animation: float-side-side 5s ease-in-out infinite;
     animation-delay: 1s;
 }
+
+/* Premium Button with Blue Click Effect */
+.btn-premium {
+    background: #fff !important;
+    color: #2f4799 !important;
+    border: 1px solid #2f4799 !important;
+    padding: 12px 30px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    font-size: 13px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    text-align: center !important;
+    line-height: normal !important;
+}
+
+.btn-premium:hover {
+    background: #2f4799 !important;
+    color: #fff !important;
+    box-shadow: 0 6px 12px rgba(47, 71, 153, 0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+.btn-premium:active {
+    background: #1e2d61 !important;
+    color: #fff !important;
+    transform: translateY(1px) scale(0.98) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Optional: Ripple effect simulation via pseudo-element */
+.btn-premium::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-premium:active::after {
+    animation: ripple 0.4s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+/* Wishlist Button Effects */
+.btn-wishlist {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: #fff !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.btn-wishlist:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    background: #2f4799 !important;
+    color: #fff !important;
+}
+
+.btn-wishlist:active {
+    transform: scale(0.9) !important;
+}
+
+.btn-wishlist.active {
+    background: #2f4799 !important;
+    color: #fff !important;
+}
+
+.btn-wishlist.active:hover {
+    background: #1e2d61 !important;
+    box-shadow: 0 5px 15px rgba(47, 71, 153, 0.3) !important;
+}
+
+.btn-wishlist.active svg {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+}
+
+/* Wishlist Ripple */
+.btn-wishlist::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-wishlist:active::after {
+    animation: ripple-wishlist 0.4s ease-out;
+}
+
+@keyframes ripple-wishlist {
+    0% {
+        transform: scale(0, 0) translate(-50%, -50%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(15, 15) translate(-50%, -50%);
+        opacity: 0;
+    }
+}
+
+@keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.rotating-badge {
+    animation: rotate-slow 15s linear infinite;
+    transform-origin: center center;
+}
+
+.hero-content h1 {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-images {
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Category Card Hover Effects */
+.category-card:hover .cat-img {
+    transform: scale(1.1);
+}
+
+.category-card:hover .cat-label {
+    background-color: #2f4799 !important;
+}
+
+.category-card:hover .cat-label h4 {
+    color: #fff !important;
+}

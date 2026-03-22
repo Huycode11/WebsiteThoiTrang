@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+import { WishlistContext } from '../../context/WishlistContext';
 
 const Header = () => {
     const { cartItems, cartCount, cartTotal, progressPercent, FREE_SHIPPING_THRESHOLD, removeFromCart, updateQuantity } = useContext(CartContext);
+    const { wishlistCount } = useContext(WishlistContext);
     const [isCartOpen, setIsCartOpen] = useState(false);
     return (
         <header id="tbay-header" className="tbay_header-template site-header header-on-slider">
@@ -78,8 +80,11 @@ const Header = () => {
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M3 11V3L11 3" stroke="currentColor" fill="none" strokeWidth="1.5"/></svg>
                             </Link>
                             {/* Wishlist */}
-                            <Link to="/wishlist" style={{ color: '#121212' }}>
+                            <Link to="/wishlist" style={{ color: '#121212', position: 'relative' }}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                {wishlistCount > 0 && (
+                                    <span style={{ position: 'absolute', top: '-8px', right: '-12px', background: '#F1735F', color: '#fff', borderRadius: '40%', padding: '2px 6px', fontSize: '10px', fontWeight: 'bold' }}>{wishlistCount}</span>
+                                )}
                             </Link>
                             {/* Cart Dropdown wrapper */}
                             <div 

@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
             }
         };
 
-        const debounceTimer = setTimeout(syncToMongo, 500); // 500ms debounce
+        const debounceTimer = setTimeout(syncToMongo, 500);
         return () => clearTimeout(debounceTimer);
     }, [cartItems, isLoaded]);
 

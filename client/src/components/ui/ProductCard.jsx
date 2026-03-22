@@ -1,15 +1,27 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+import { WishlistContext } from '../../context/WishlistContext';
 
 const ProductCard = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
     const { addToCart } = useContext(CartContext);
+    const { toggleWishlist, isInWishlist } = useContext(WishlistContext);
 
     const handleAddToCart = (e) => {
         e.preventDefault(); 
         addToCart(product, 1);
         // Optional: Can remove alert for smoother UX, rely on Cart Context visually updating
+    };
+
+    const handleWishlist = (e) => {
+        e.preventDefault();
+        const status = toggleWishlist(product);
+        if (status === 'added') {
+            alert(`"${product.name}" added to wishlist!`);
+        } else {
+            alert(`"${product.name}" removed from wishlist!`);
+        }
     };
 
     return (
@@ -82,15 +94,11 @@ const ProductCard = ({ product }) => {
                     }}>
                         <button 
                             onClick={handleAddToCart}
+                            className="btn-premium"
                             style={{ 
                                 width: '100%', 
-                                background: '#fff', 
-                                color: '#121212', 
-                                border: 'none', 
                                 padding: '12px 0', 
-                                fontSize: '13px', 
-                                fontWeight: 'bold', 
-                                cursor: 'pointer',
+                                fontSize: '12px', 
                                 boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                             }}
                         >
@@ -110,11 +118,32 @@ const ProductCard = ({ product }) => {
                         transition: 'all 0.3s ease',
                         zIndex: 2
                     }}>
-                        {['m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z', 'M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z', 'M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5'].map((path, idx) => (
-                            <button key={idx} onClick={(e) => { e.preventDefault(); alert('Feature coming soon!'); }} style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
-                                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d={path} /></svg>
-                            </button>
-                        ))}
+                        {/* Search Icon */}
+                        <button onClick={(e) => { e.preventDefault(); }} style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+                        </button>
+                        
+                        {/* Wishlist Heart Icon */}
+                        <button 
+                            onClick={handleWishlist} 
+                            className={`btn-wishlist ${isInWishlist(product._id) ? 'active' : ''}`}
+                        >
+                            <svg 
+                                width="18" 
+                                height="18" 
+                                fill={isInWishlist(product._id) ? "#fff" : "none"} 
+                                stroke={isInWishlist(product._id) ? "#fff" : "currentColor"} 
+                                strokeWidth="1.5" 
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                            </svg>
+                        </button>
+
+                        {/* Compare/Sync Icon */}
+                        <button onClick={(e) => { e.preventDefault(); }} style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                        </button>
                     </div>
                 </div>
                 

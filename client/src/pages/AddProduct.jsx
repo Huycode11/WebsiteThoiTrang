@@ -292,7 +292,7 @@ const AddProduct = () => {
                     </div>
 
                     <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                        <button type="submit" disabled={isLoading} style={{ background: '#2f4799', color: '#fff', border: 'none', padding: '15px 50px', fontSize: '15px', fontWeight: 'bold', borderRadius: '4px', cursor: isLoading ? 'not-allowed' : 'pointer', letterSpacing: '1px', opacity: isLoading ? 0.7 : 1 }}>
+                        <button type="submit" disabled={isLoading} className="btn-premium" style={{ opacity: isLoading ? 0.7 : 1, padding: '15px 50px' }}>
                             {isLoading ? 'Creating...' : 'ADD PRODUCT'}
                         </button>
                     </div>

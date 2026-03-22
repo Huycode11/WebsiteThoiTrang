@@ -26,7 +26,7 @@ const Cart = () => {
                     <div style={{ textAlign: 'center', padding: '100px 0' }}>
                         <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '15px' }}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                         <p style={{ fontSize: '18px', color: '#666', marginBottom: '20px' }}>Your cart is currently empty.</p>
-                        <Link to="/shop" style={{ background: '#2f4799', color: '#fff', padding: '12px 30px', textDecoration: 'none', fontWeight: 'bold', fontSize: '12px', letterSpacing: '1px' }}>CONTINUE SHOPPING</Link>
+                        <Link to="/shop" className="btn-premium">CONTINUE SHOPPING</Link>
                     </div>
                 ) : (
                     <div>
@@ -70,10 +70,10 @@ const Cart = () => {
 
                         {/* Action Buttons */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-                            <Link to="/shop" style={{ display: 'inline-block', background: '#3b5998', color: '#fff', fontSize: '11px', fontWeight: '600', padding: '12px 30px', textDecoration: 'none', letterSpacing: '1px' }}>
+                            <Link to="/shop" className="btn-premium">
                                 CONTINUE SHOPPING
                             </Link>
-                            <button style={{ background: '#b0b0b0', color: '#fff', border: 'none', fontSize: '11px', fontWeight: '600', padding: '12px 30px', cursor: 'pointer', letterSpacing: '1px' }}>
+                            <button className="btn-premium">
                                 UPDATE CART
                             </button>
                         </div>
@@ -121,7 +121,7 @@ const Cart = () => {
                                 <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#121212', marginBottom: '20px' }}>Coupon</h3>
                                 <div style={{ display: 'flex' }}>
                                     <input type="text" placeholder="Enter coupon code here..." style={{ flex: '1', padding: '12px 15px', border: 'none', background: '#f5f5f5', fontSize: '12px', outline: 'none' }} />
-                                    <button style={{ background: '#3b5998', color: '#fff', border: 'none', padding: '0 25px', fontSize: '11px', fontWeight: '600', letterSpacing: '1px', cursor: 'pointer' }}>
+                                    <button className="btn-premium">
                                         APPLY COUPON
                                     </button>
                                 </div>
@@ -131,7 +131,7 @@ const Cart = () => {
                             <div style={{ flex: '1' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                                     <h3 style={{ fontSize: '14px', fontWeight: '600', color: '#121212', margin: 0 }}>Cart Totals</h3>
-                                    <button style={{ background: '#3b5998', color: '#fff', border: 'none', padding: '12px 30px', fontSize: '11px', fontWeight: '600', letterSpacing: '1px', cursor: 'pointer' }}>
+                                    <button className="btn-premium">
                                         PROCEED TO CHECKOUT
                                     </button>
                                 </div>
